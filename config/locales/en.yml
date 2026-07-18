@@ -1,0 +1,11 @@
+en:
+  label_blocked_status_lock_enabled: "Also restrict non-closing status changes while blocked"
+  label_blocked_status_lock_mode: "Behavior"
+  label_blocked_status_lock_mode_strict: "Always block, no override"
+  label_blocked_status_lock_mode_confirm_all: "Block, but allow anyone to override with confirmation"
+  label_blocked_status_lock_mode_confirm_roles: "Block, but allow override with confirmation only for selected roles"
+  label_blocked_status_lock_allowed_roles: "Roles allowed to override (when behavior is set to selected roles)"
+  text_blocked_status_lock_allowed_roles_hint: "Only used when the behavior above is set to \"selected roles\"."
+  text_issue_blocked_status_locked: "This issue is blocked by %{issues}, which are not closed yet. Status changes are locked."
+  button_override_blocked_status: "Override — I understand"
+  text_confirm_override_blocked_status: "This issue is blocked by an open issue. Are you sure you want to change its status anyway?"

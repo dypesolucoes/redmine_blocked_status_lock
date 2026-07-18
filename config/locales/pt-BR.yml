@@ -1,0 +1,11 @@
+pt-BR:
+  label_blocked_status_lock_enabled: "Também restringir mudanças de status que não sejam encerramento, enquanto bloqueada"
+  label_blocked_status_lock_mode: "Comportamento"
+  label_blocked_status_lock_mode_strict: "Sempre bloquear, sem possibilidade de contornar"
+  label_blocked_status_lock_mode_confirm_all: "Bloquear, mas permitir que qualquer um contorne com confirmação"
+  label_blocked_status_lock_mode_confirm_roles: "Bloquear, mas permitir contornar com confirmação apenas para perfis selecionados"
+  label_blocked_status_lock_allowed_roles: "Perfis com permissão para contornar (quando o comportamento for \"perfis selecionados\")"
+  text_blocked_status_lock_allowed_roles_hint: "Usado apenas quando o comportamento acima estiver definido como \"perfis selecionados\"."
+  text_issue_blocked_status_locked: "Esta tarefa está bloqueada por %{issues}, que ainda não foram encerradas. As mudanças de status estão bloqueadas."
+  button_override_blocked_status: "Contornar — estou ciente"
+  text_confirm_override_blocked_status: "Esta tarefa está bloqueada por uma tarefa em aberto. Tem certeza de que deseja alterar o status mesmo assim?"

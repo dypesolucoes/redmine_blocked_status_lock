@@ -1,0 +1,20 @@
+<% if issue.present? && !issue.new_record? && issue.blocked? && BlockedStatusLock.restriction_active? %>
+  <% blockers = issue.relations_to.select { |ir| ir.relation_type == 'blocks' && !ir.issue_from.closed? }.map(&:issue_from) %>
+  <div id="blocked-status-lock-notice" class="flash warning">
+    <p>
+      <%= l(:text_issue_blocked_status_locked,
+            :issues => blockers.map { |b| link_to_issue(b) }.join(', ')).html_safe %>
+    </p>
+    <% if BlockedStatusLock.overridable_by?(User.current, issue.project) %>
+      <p>
+        <a href="#" id="blocked-status-lock-override-link"><%= l(:button_override_blocked_status) %></a>
+      </p>
+      <%= hidden_field_tag 'issue[bypass_blocked_status_check]', '0', :id => 'blocked_status_bypass_field' %>
+      <%= javascript_tag(
+            "window.blockedStatusLockUnblockedOptions = #{issue.statuses_allowed_ignoring_block(User.current, false).map { |s| [s.name, s.id] }.to_json};" \
+            "window.blockedStatusLockConfirmText = #{l(:text_confirm_override_blocked_status).to_json};"
+          ) %>
+      <%= javascript_include_tag 'blocked_status_override', :plugin => 'redmine_blocked_status_lock' %>
+    <% end %>
+  </div>
+<% end %>

@@ -1,0 +1,41 @@
+<table width="100%">
+  <tr>
+    <td class="box" style="vertical-align: top;">
+      <p>
+        <label>
+          <%= check_box_tag 'settings[enabled]', '1', settings['enabled'].to_s != '0' %>
+          <%= l(:label_blocked_status_lock_enabled) %>
+        </label>
+        <%= hidden_field_tag 'settings[enabled]', '0', :id => nil %>
+      </p>
+
+      <p>
+        <label for="settings_mode"><%= l(:label_blocked_status_lock_mode) %></label>
+        <%= select_tag 'settings[mode]',
+              options_for_select(
+                [
+                  [l(:label_blocked_status_lock_mode_strict), 'strict'],
+                  [l(:label_blocked_status_lock_mode_confirm_all), 'confirm_all'],
+                  [l(:label_blocked_status_lock_mode_confirm_roles), 'confirm_roles']
+                ],
+                settings['mode']
+              ) %>
+      </p>
+
+      <p>
+        <label><%= l(:label_blocked_status_lock_allowed_roles) %></label><br />
+        <% Role.givable.each do |role| %>
+          <label style="display:inline-block; margin-right: 1em;">
+            <%= check_box_tag 'settings[allowed_role_ids][]', role.id.to_s,
+                  Array(settings['allowed_role_ids']).map(&:to_s).include?(role.id.to_s),
+                  :id => nil %>
+            <%= role.name %>
+          </label>
+        <% end %>
+        <%= hidden_field_tag 'settings[allowed_role_ids][]', '', :id => nil %>
+        <br />
+        <em class="info"><%= l(:text_blocked_status_lock_allowed_roles_hint) %></em>
+      </p>
+    </td>
+  </tr>
+</table>
